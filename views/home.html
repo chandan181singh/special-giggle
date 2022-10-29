@@ -27,8 +27,28 @@
     </div>
     <br>
     <br><br>
-    
-    <h1><b>This is Homepage</b></h1>
+    <div id="complaint_box">
+        <h1 id="complain"><u>
+                <center><b>COMPLAINT BOX</b></center>
+            </u></h1>
+        <br><br><br>
+        <br>
+        <!-- make Post  request to login -->
+        <form action="/login" method="POST">
+            <div id="complain-form">
+                <label for="text">COMPLAINT</label>
+                <center> <input type="text" class="form-control" name="complain" placeholder="complain" size="20">
+                </center>
+                <center><button type="submit">Submit</button></center>
+            </div>
+        </form>
+        <br><br>
+        <center>
+            <h4> <a href="/">Log Out</a></h4>
+        </center>
+        <br><br>
+    </div>
+
 
 </body>
 
