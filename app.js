@@ -2,13 +2,14 @@ const express = require('express');
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const path = require('path');
+
+const encrypt = require("mongoose-encryption");
 const app = express();
 
 // app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
 
 //connect momgoose
 mongoose.connect("mongodb://localhost:27017/UserDb", {
@@ -21,10 +22,13 @@ mongoose.connection.on("connected", (err, res) => {
   console.log("mongoose is connected")
 })
 
-const userSchema = {
-  email: String,
-  password: String
-};
+const userSchema = new mongoose.Schema({
+  email: {type: String, require: true, unique: true },
+  password: {type: String, require: true }
+});
+
+const secret = "Thisisourlittlesecrete";
+userSchema.plugin(encrypt,{secret: secret, encryptedFields: ["password"]});
 
 const User = new mongoose.model("User", userSchema);
 
