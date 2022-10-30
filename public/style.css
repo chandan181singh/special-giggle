@@ -6,25 +6,7 @@
 body{
     background: linear-gradient(to right,rgb(0, 255, 119), rgb(223, 195, 55));
 }
-#navebar{
-    background-color: rgb(14, 20, 130);
-    color: white;
-    position: fixed;
-    width: 100%;
-}
 
-#navebar ul{
-    display: flex;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    cursor: pointer;
-}
-
-.navlist{
-    padding-left: 10px;
-    list-style: none;
-}
 
 #complain{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -71,22 +53,7 @@ body{
 #form label{
     margin-left: 20%;
 }
-#complain-form label{
-    margin-left: 20%;
-}
 
-#complain-form input{
-    width: 280px;
-    height: 300px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 1.2rem;
-    /* margin-bottom: 20px;
-    padding-left: 10px;
-    padding-top: 5px; */
-    word-wrap: break-word;
-    overflow: hidden;
-}
 img{
     margin-top: 20px;
     height: 150px;

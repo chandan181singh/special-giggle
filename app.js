@@ -4,8 +4,9 @@ const express = require('express');
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const path = require('path');
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
-const encrypt = require("mongoose-encryption");
 const app = express();
 
 // app.use(express.static("public"));
@@ -25,12 +26,12 @@ mongoose.connection.on("connected", (err, res) => {
 })
 
 const userSchema = new mongoose.Schema({
-  email: {type: String, require: true, unique: true },
-  password: {type: String, require: true }
+  email: { type: String, require: true, unique: true },
+  password: { type: String, require: true }
 });
 
 // const secret = "Thisisourlittlesecrete";
-userSchema.plugin(encrypt,{secret: process.env.SECRET, encryptedFields: ["password"]});
+// userSchema.plugin(encrypt,{secret: process.env.SECRET, encryptedFields: ["password"]});
 
 const User = new mongoose.model("User", userSchema);
 
@@ -53,18 +54,22 @@ app.get('/register', (req, res) => {
 app.use(express.static(__dirname));
 
 app.post("/register", function (req, res) {
-  const newUser = new User({
-    email: req.body.username,
-    password: req.body.password
-  });
 
-  newUser.save(function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.sendFile(path.join(__dirname, '/views/home.html'));
-    }
-  });
+  bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+
+    const newUser = new User({
+      email: req.body.username,
+      password: hash
+    });
+
+    newUser.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.sendFile(path.join(__dirname, '/views/home.html'));
+      }
+    });
+  })
 
 });
 
@@ -77,9 +82,11 @@ app.post("/login", function (req, res) {
       console.log(err);
     } else {
       if (foundUser) {
-        if (foundUser.password === password) {
-          res.sendFile(path.join(__dirname, '/views/home.html'));
-        }
+        bcrypt.compare(password, foundUser.password, function (err, result) {
+          if (result === true) {
+            res.sendFile(path.join(__dirname, '/views/home.html'));
+          }
+        });
       }
     }
   }

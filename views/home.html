@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Special-Giggle</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/homeStyle.css">
 
 </head>
 
@@ -33,18 +33,15 @@
             </u></h1>
         <br><br><br>
         <br>
-        <!-- make Post  request to login -->
-        <form action="/submit" method="POST">
-            <div id="complain-form">
-                <label for="text">COMPLAINT</label>
-                <center> <input type="text" class="form-control" name="complain" placeholder="complain" size="20">
-                </center>
-                <center><button type="submit">Submit</button></center>
-            </div>
-        </form>
+        <div id="complain-form">
+            <label for="text">COMPLAINT</label>
+                 <center> <input type="text" class="form-control" name="complain" placeholder="complain" size="20">
+                </center> 
+            <center><button><a href="/submit">Submit</button></a></center> 
+        </div>
         <br><br>
         <center>
-            <h4> <a href="/">Log Out</a></h4>
+            <h4> <a href="/logout">Log Out</a></h4>
         </center>
         <br><br>
     </div>
