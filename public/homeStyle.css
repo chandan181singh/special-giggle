@@ -4,26 +4,43 @@
 }
 
 body{
-    background: linear-gradient(to right,rgb(0, 255, 119), rgb(223, 195, 55));
+    background: linear-gradient(to right,rgb(49, 48, 49), rgb(31, 26, 50));
 }
 #navebar{
-    background-color: rgb(14, 20, 130);
-    color: white;
-    position: fixed;
-    width: 100%;
+    position: relative;
+    margin-bottom: 60px;
 }
 
-#navebar ul{
-    display: flex;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+#logout{
+    float: right;
+    background-color: white;
+    flex-direction: row;
+    width: 120px;
     cursor: pointer;
+    border: solid black;
+    border-radius: 20px;
+    padding: 5px; 
+    position: relative;
 }
 
-.navlist{
-    padding-left: 10px;
-    list-style: none;
+#logout span{
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+#logout a{
+    text-decoration: none;
+}
+#profile{
+    display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.card{
+   /* padding-left: 20px; */
+   margin-left: 10px;
+   margin-right: 10px;
 }
 
 #complain{
@@ -74,22 +91,23 @@ body{
 #complain-form label{
     margin-left: 20%;
 }
-
-#complain-form input{
-    width: 280px;
-    height: 300px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 1.2rem;
-    /* margin-bottom: 20px;
-    padding-left: 10px;
-    padding-top: 5px; */
-    word-wrap: break-word;
-    overflow: hidden;
+#complain-form button a{
+    text-decoration: none;
+    color: white;
 }
+#complain-form button {
+    background-color: green;
+    cursor: pointer;
+}
+
 img{
     margin-top: 20px;
     height: 150px;
     width: 150px;
     border-radius: 100px;
+}
+
+.mb-3{
+    padding-left: 10px;
+    padding-right: 10px;
 }

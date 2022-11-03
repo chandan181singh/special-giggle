@@ -11,15 +11,7 @@
 </head>
 
 <body>
-    <!-- <div id="navebar">
-        <ul>
-            <li class="navlist">Home</li>
-            <li class="navlist">Content</li>
-            <li class="navlist">Contact</li>
-            <li class="navlist">FAQs</li>
-            <li class="navlist">Services</li>
-        </ul>
-    </div> -->
+
     <br>
     <br><br>
     <div>
@@ -42,16 +34,53 @@
             <form action="/register" method="POST">
                 <!-- <form action="" id="reg-form"></form> -->
                 <label for="text">Name</label>
-                <center><input type="name" class="form-control" name="name" placeholder="Name" size="20">
+                <!-- <center><input type="name" class="form-control" name="name" placeholder="Name" size="20">
+                </center> -->
+                <center>
+                    <div class="col-md-4">
+                        <!-- <label for="validationServerUsername" class="form-label">Username</label> -->
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control is-invalid" id="validationServerUsername"
+                                aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required
+                                name="name" placeholder="Name" size="20">
+                        </div>
+                    </div>
                 </center>
                 <label for="email">Email</label>
-                <center><input type="email" class="form-control" name="username" placeholder="username" size="20">
+                <center>
+                    <div class="col-md-4">
+                        <div class="input-group has-validation">
+                            <input type="email" class="form-control is-invalid" id="validationServerUsername"
+                                aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required
+                                name="username" placeholder="username" size="20">
+                        </div>
+                    </div>
                 </center>
                 <label for="password">Set Password</label>
-                <center> <input type="password" class="form-control" name="password" placeholder="Set password" size="20">
+                <!-- <center> <input type="password" class="form-control" name="password" placeholder="Set password"
+                        size="20">
+                </center> -->
+                <center>
+                    <div class="col-md-4">
+                        <div class="input-group has-validation">
+                            <input type="password" class="form-control is-invalid" id="validationServerUsername"
+                                aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required
+                                name="password" placeholder="password" size="20">
+                        </div>
+                    </div>
                 </center>
                 <label for="Confirmpassword">Confirm Password</label>
-                <center> <input type="password" class="form-control" name="password2" placeholder="Confirm password" size="20">
+                <!-- <center> <input type="password" class="form-control" name="password2" placeholder="Confirm password"
+                        size="20">
+                </center> -->
+                <center>
+                    <div class="col-md-4">
+                        <div class="input-group has-validation">
+                            <input type="password" class="form-control is-invalid" id="validationServerUsername"
+                                aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required
+                                name="password2" placeholder="Confirm password" size="20">
+                        </div>
+                    </div>
                 </center>
                 <center><button type="submit">Register</button></center>
             </form>
@@ -60,7 +89,5 @@
         <br><br>
     </div>
 
-
 </body>
-
 </html>

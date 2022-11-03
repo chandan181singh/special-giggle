@@ -25,9 +25,15 @@ mongoose.connection.on("connected", (err, res) => {
   console.log("mongoose is connected")
 })
 
+// const userSchema = new mongoose.Schema({
+//   email: { type: String, require: true, unique: true },
+//   password: { type: String, require: true }
+// });
+
 const userSchema = new mongoose.Schema({
-  email: { type: String, require: true, unique: true },
-  password: { type: String, require: true }
+  name: String,
+  email: String, 
+  password: String
 });
 
 // const secret = "Thisisourlittlesecrete";
@@ -37,16 +43,17 @@ const User = new mongoose.model("User", userSchema);
 
 //connecting html file
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/views/index.html'));
+  res.sendFile(path.join(__dirname, '/views/userlogin.html'));
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '/views/index.html'));
+app.get('/userlogin', (req, res) => {
+  res.sendFile(path.join(__dirname, '/views/userlogin.html'));
 });
 
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '/views/register.html'));
 });
+
 
 
 
@@ -58,6 +65,7 @@ app.post("/register", function (req, res) {
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
 
     const newUser = new User({
+      name: req.body.name,
       email: req.body.username,
       password: hash
     });
@@ -66,14 +74,14 @@ app.post("/register", function (req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.sendFile(path.join(__dirname, '/views/home.html'));
+        res.sendFile(path.join(__dirname, '/views/home3.html'));
       }
     });
   })
 
 });
 
-app.post("/login", function (req, res) {
+app.post("/userlogin", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -84,7 +92,7 @@ app.post("/login", function (req, res) {
       if (foundUser) {
         bcrypt.compare(password, foundUser.password, function (err, result) {
           if (result === true) {
-            res.sendFile(path.join(__dirname, '/views/home.html'));
+            res.sendFile(path.join(__dirname, '/views/home3.html'));
           }
         });
       }
@@ -93,7 +101,14 @@ app.post("/login", function (req, res) {
   )
 });
 
-
+app.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { 
+      return next(err); 
+      }
+    res.redirect('/');
+  });
+});
 
 
 
