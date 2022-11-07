@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 
 const config = require("../config/config");
 
- const randomString = require("randomstring"); 
+ const randomstring = require("randomstring"); 
 
 const securePassword = async(password)=>{
   try{
@@ -26,7 +26,7 @@ const sendVerifyMail = async(name,email,user_id)=>{
         //service: 'gmail',
         auth:{
               user:config.emailUser,
-              pass:config.emailUser
+              pass:config.emailPassword
         }
     });
     const mailOptions = {
@@ -57,7 +57,7 @@ const loadRegister = async(req,res)=>{
 }
 
 //Forget password send email
-const sendResetyMail = async(name,email,user_id)=>{
+const sendResetMail = async(name,email,token)=>{
     try{
   const transporter = nodemailer.createTransport({
       host:'smtp.gmail.com',
@@ -67,14 +67,14 @@ const sendResetyMail = async(name,email,user_id)=>{
       //service: 'gmail',
       auth:{
             user:config.emailUser,
-            pass:config.emailUser
+            pass:config.emailPassword
       }
   });
   const mailOptions = {
       from:config.emailUser,
       to:email,
-      subject:'For Verification at ComplainWebsite',
-      html:'<p>Hii '+name+', Please Click here to <a href="http://localhost:3000/verify?id='+user_id+'">Verify</a> your mail</p>'
+      subject:'For Reset password',
+      html:'<p>Hii '+name+', Please Click here to <a href="http://localhost:3000/forget-password?token='+token+'">Reset Password</a> </p>'
   }
   transporter.sendMail(mailOptions,function(error,info){
       if(error){
@@ -197,9 +197,10 @@ const forgetVerify = async(req,res)=>{
             if(userData.is_verified === 0){
                 res.render('forget',{message:"Please Verify your mail"});
             }else{
-                const randomString = randomString.generate();
+                const randomString =   randomstring.generate();
                 const updatedData = await User.updateOne({email:email},{$set:{ token:randomString}});
-
+                sendResetMail(userData.name,userData.email,randomString);
+                res.render('forget',{message:"Please Check your mail to reset your password"});
             }
        }else{
         res.render('forget',{message:"user email is incorrect."});
@@ -209,7 +210,33 @@ const forgetVerify = async(req,res)=>{
     }
 }
 
+const forgetPasswordLoad = async(req,res)=>{
+    try{
+        const token = req.query.token;
+        const tokenData = await User.findOne({token:token});
+        if(tokenData){
+            res.render('forget-password',{user_id:tokenData._id});
+        }else{
+            res.render('404',{message:"Page not found"});
+        }
+    }catch(error){
+        console.log(error.message);
+    }
+}
 
+const resetPassword = async(req,res)=>{
+    try{
+        const password = req.body.password;
+        const user_id = req.body.user_id;
+
+        const secure_password = await securePassword(password);
+
+         const updatedData = await User.findByIdAndUpdate({_id:user_id}, {password:secure_password, token:''});
+         res.redirect('/');
+    }catch(error){
+        console.log(error.messgae);
+    }
+}
 
 module.exports = {
     loadRegister,
@@ -220,5 +247,7 @@ module.exports = {
     loadHome,
     userLogout,
     forgetLoad,
-    forgetVerify
+    forgetVerify,
+    forgetPasswordLoad,
+    resetPassword
 }

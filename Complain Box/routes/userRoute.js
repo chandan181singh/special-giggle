@@ -50,4 +50,9 @@ userRoute.get('/forget',auth.isLogout,userController.forgetLoad);
 
 userRoute.post('/forget',userController.forgetVerify);
 
+userRoute.get('/forget-password',auth.isLogout,userController.forgetPasswordLoad);
+
+userRoute.post('/forget-password',userController.resetPassword);
+
+
 module.exports = userRoute;
