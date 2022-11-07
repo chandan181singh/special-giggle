@@ -16,7 +16,6 @@ body{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
 }
-
 #complaint_box{
     background: linear-gradient(to right, red,blue);
     width: 500px;
@@ -24,7 +23,6 @@ body{
     border-radius: 20px;
     color: aliceblue;
 }
-
 
 #complaint_box input{
     width: 280px;

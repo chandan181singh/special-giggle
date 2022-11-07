@@ -1,0 +1,26 @@
+<% include('../layouts/header.ejs') %>
+
+<h1>Complain Box</h1>
+<form action="/register" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Enter name" required>
+    <br><br>
+    <input type="text" name="email" placeholder="username" required>
+    <br><br>
+    <input type="number" name="mbno" placeholder="Enter mobile no.." required>
+    <br><br>
+    <input type="file" name="image" required>
+    <br><br>
+    <input type="password" name="password" placeholder="password" required>
+    <br><br>
+    <input type="submit" value="Register" >
+    <br><br>
+</form>
+
+<% 
+    if(typeof message !== 'undefined'){
+        %> 
+        <p style="color: green;"><%= message %></p>
+        <%
+    }
+%>
+<% include('../layouts/footer.ejs') %>
