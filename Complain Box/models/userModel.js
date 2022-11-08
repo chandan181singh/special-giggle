@@ -37,4 +37,17 @@ const userSchema = new mongoose.Schema({
 
 });
 
+// const UserSchema = mongoose.model("User",userSchema);
+
 module.exports = mongoose.model("User",userSchema);
+
+// const complainSchema = new mongoose.Schema({
+//     complain:{
+//         type:String,
+//         required:true
+//     }
+// });
+// const ComplainSchema = mongoose.model("User",complainSchema);
+
+//module.exports = mongoose.model("Complain",complainSchema);
+

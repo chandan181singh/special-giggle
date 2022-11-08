@@ -39,7 +39,7 @@ userRoute.post('/register',upload.single('image'),userController.insertUser);
 userRoute.get('/verify',userController.verifyMail);
 
 userRoute.get('/',auth.isLogout,userController.loginLoad);
-userRoute.get('/login',userController.loginLoad);
+userRoute.get('/login',auth.isLogout,userController.loginLoad);
 userRoute.post('/login', userController.verifyLogin);
 
 userRoute.get('/home',auth.isLogin, userController.loadHome);
@@ -54,5 +54,6 @@ userRoute.get('/forget-password',auth.isLogout,userController.forgetPasswordLoad
 
 userRoute.post('/forget-password',userController.resetPassword);
 
+//userRoute.post('/complain-submit',userController.insertComplain);
 
 module.exports = userRoute;

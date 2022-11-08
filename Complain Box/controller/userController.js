@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+//const Complain1 = require('../models/userModel');
+
 const bcrypt = require('bcrypt');
 const nodemailer = require("nodemailer");
 //const { request } = require('../routes/userRoute');
@@ -118,9 +120,9 @@ const insertUser = async(req,res)=>{
 
 const verifyMail  = async(req,res)=>{
     try{
-        const updateInfo = await User.updateOne({_id:req.query.id},{$set:{is_verified:1}});
+        const updateInfo = await User.updateOne({_id:req.query.id},{$set:{ is_verified:1 }});
         console.log(updateInfo);
-        res.render("email-verified");
+        res.render("login",{message:"Your email has been verified"});
     }catch(error){
         console.log(error.message);
     }
@@ -238,6 +240,19 @@ const resetPassword = async(req,res)=>{
     }
 }
 
+// const insertComplain = async(req,res)=>{
+//     try{
+//      const complain1 = Complain1({
+//          complain:req.body.complain
+//      });
+ 
+//      const userComplain = await complain1.save();
+ 
+//     }catch(error){
+//      console.log(error.message);
+//     }
+//  }
+
 module.exports = {
     loadRegister,
     insertUser,
@@ -249,5 +264,7 @@ module.exports = {
     forgetLoad,
     forgetVerify,
     forgetPasswordLoad,
-    resetPassword
+    resetPassword,
+   // insertComplain
 }
+
