@@ -70,4 +70,6 @@ userRoute.post('/forget-password',userController.resetPassword);
 
 userRoute.post('/complain-submit',upload2.single('pdf'),userController.insertComplain);
 
+userRoute.get('/complain',userController.loadComplain);
+
 module.exports = userRoute;

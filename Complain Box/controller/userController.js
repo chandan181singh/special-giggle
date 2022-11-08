@@ -245,7 +245,9 @@ const resetPassword = async(req,res)=>{
 
 const insertComplain = async(req,res)=>{
     try{
+     //const userEmail = await User.findOne({email:email});
      const complain = Complain({
+        // email:userEmail,
          complain:req.body.complain,
          customcomplain:req.body.customcomplain,
          pdf:req.file.filename
@@ -253,11 +255,31 @@ const insertComplain = async(req,res)=>{
  
      const userComplain = await complain.save();
      res.redirect('/home');
- 
+     //const userData = await Complain.findOneById(_id);
+    /* if(userData){
+        try{
+           // req.session.complain_id = userData;
+            res.redirect('/home');
+        }catch(error){
+            console.log("prabhu");
+            console.log(error.message);
+        }
+     }
+ */
     }catch(error){
      console.log(error.message);
     }
  }
+
+const loadComplain = async(req,res)=>{
+    try{
+        //const complainData = await Complain.findById({_id:req.session.complain_id});
+        //const userEmail = await User.findOne({email:email});
+        res.render('usercomplain');
+    }catch(error){
+        console.log(error.message);
+    }
+}
 
 module.exports = {
     loadRegister,
@@ -271,6 +293,7 @@ module.exports = {
     forgetVerify,
     forgetPasswordLoad,
     resetPassword,
-    insertComplain
+    insertComplain,
+    loadComplain
 }
 

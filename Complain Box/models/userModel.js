@@ -42,6 +42,10 @@ const User = mongoose.model("User",userSchema);
 //module.exports = mongoose.model("User",userSchema);
 
 const complainSchema = new mongoose.Schema({
+    // email:{
+    //     type:String,
+    //     required:true
+    // },
     complain:{
         type:String,
         required:true
