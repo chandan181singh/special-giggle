@@ -1,5 +1,7 @@
-const User = require('../models/userModel');
+//const User = require('../models/userModel');
 //const Complain1 = require('../models/userModel');
+
+const {User,Complain} = require('../models/userModel');
 
 const bcrypt = require('bcrypt');
 const nodemailer = require("nodemailer");
@@ -167,7 +169,8 @@ const verifyLogin = async(req,res)=>{
 
 const loadHome = async(req,res)=>{
     try{
-             res.render('home');
+             const userData = await User.findById({_id:req.session.user_id})
+             res.render('home',{ user:userData });
     }catch(error){
         console.log(error.messgae);
     }
@@ -240,18 +243,21 @@ const resetPassword = async(req,res)=>{
     }
 }
 
-// const insertComplain = async(req,res)=>{
-//     try{
-//      const complain1 = Complain1({
-//          complain:req.body.complain
-//      });
+const insertComplain = async(req,res)=>{
+    try{
+     const complain = Complain({
+         complain:req.body.complain,
+         customcomplain:req.body.customcomplain,
+         pdf:req.file.filename
+     });
  
-//      const userComplain = await complain1.save();
+     const userComplain = await complain.save();
+     res.redirect('/home');
  
-//     }catch(error){
-//      console.log(error.message);
-//     }
-//  }
+    }catch(error){
+     console.log(error.message);
+    }
+ }
 
 module.exports = {
     loadRegister,
@@ -265,6 +271,6 @@ module.exports = {
     forgetVerify,
     forgetPasswordLoad,
     resetPassword,
-   // insertComplain
+    insertComplain
 }
 

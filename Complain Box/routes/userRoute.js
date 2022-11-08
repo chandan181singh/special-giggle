@@ -16,6 +16,8 @@ const bodyParser = require('body-parser');
 userRoute.use(bodyParser.json());
 userRoute.use(bodyParser.urlencoded({extended:true}));
 
+userRoute.use(express.static('public'));
+
 const multer = require("multer");
 const path = require("path");
 
@@ -29,7 +31,19 @@ const storage = multer.diskStorage({
     }
 });
 
+const storage2 = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,path.join(__dirname, '../public/userpdfcomplain'));
+    },
+    filename:function(req,file,cb){
+     const name = Date.now()+'-'+file.originalname;
+     cb(null,name);
+    }
+});
+
 const upload = multer({storage:storage});
+const upload2 = multer({storage:storage2});
+
 
 const userController = require("../controller/userController");
 userRoute.get('/register',auth.isLogout, userController.loadRegister);
@@ -54,6 +68,6 @@ userRoute.get('/forget-password',auth.isLogout,userController.forgetPasswordLoad
 
 userRoute.post('/forget-password',userController.resetPassword);
 
-//userRoute.post('/complain-submit',userController.insertComplain);
+userRoute.post('/complain-submit',upload2.single('pdf'),userController.insertComplain);
 
 module.exports = userRoute;

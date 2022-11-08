@@ -37,17 +37,29 @@ const userSchema = new mongoose.Schema({
 
 });
 
-// const UserSchema = mongoose.model("User",userSchema);
+const User = mongoose.model("User",userSchema);
 
-module.exports = mongoose.model("User",userSchema);
+//module.exports = mongoose.model("User",userSchema);
 
-// const complainSchema = new mongoose.Schema({
-//     complain:{
-//         type:String,
-//         required:true
-//     }
-// });
-// const ComplainSchema = mongoose.model("User",complainSchema);
+const complainSchema = new mongoose.Schema({
+    complain:{
+        type:String,
+        required:true
+    },
+    customcomplain:{
+        type:String,
+        // required:true
+    },
+    pdf:{
+        type:String,
+        // required:true
+    }
+});
+const Complain = mongoose.model("Complain",complainSchema);
 
 //module.exports = mongoose.model("Complain",complainSchema);
 
+module.exports = {
+    User:  User,
+    Complain: Complain
+}
