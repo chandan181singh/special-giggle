@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true
-    },
+   
     email:{
         type:String,
         unique:true,
+        required:true
+    },
+    name:{
+        type:String,
         required:true
     },
     mbno:{
@@ -42,10 +43,10 @@ const User = mongoose.model("User",userSchema);
 //module.exports = mongoose.model("User",userSchema);
 
 const complainSchema = new mongoose.Schema({
-    // email:{
-    //     type:String,
-    //     required:true
-    // },
+    email:{
+        type:String,
+        required:true
+    },
     complain:{
         type:String,
         required:true

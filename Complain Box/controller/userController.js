@@ -245,27 +245,18 @@ const resetPassword = async(req,res)=>{
 
 const insertComplain = async(req,res)=>{
     try{
-     //const userEmail = await User.findOne({email:email});
-     const complain = Complain({
-        // email:userEmail,
+        const userData = await User.findById({_id:req.session.user_id});
+
+        const complain = Complain({
+         email:userData.email,
          complain:req.body.complain,
          customcomplain:req.body.customcomplain,
          pdf:req.file.filename
      });
  
      const userComplain = await complain.save();
+     req.session.complain_id = userComplain.id;
      res.redirect('/home');
-     //const userData = await Complain.findOneById(_id);
-    /* if(userData){
-        try{
-           // req.session.complain_id = userData;
-            res.redirect('/home');
-        }catch(error){
-            console.log("prabhu");
-            console.log(error.message);
-        }
-     }
- */
     }catch(error){
      console.log(error.message);
     }
@@ -273,9 +264,9 @@ const insertComplain = async(req,res)=>{
 
 const loadComplain = async(req,res)=>{
     try{
-        //const complainData = await Complain.findById({_id:req.session.complain_id});
-        //const userEmail = await User.findOne({email:email});
-        res.render('usercomplain');
+        
+        const userData = await Complain.findById({_id:req.session.complain_id});
+        res.render('usercomplain',{ complain:userData });
     }catch(error){
         console.log(error.message);
     }
