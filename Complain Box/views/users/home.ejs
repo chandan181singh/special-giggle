@@ -53,9 +53,10 @@
                             </li>
                         </ul>
                         <form class="d-flex" role="link">
+                            <a href="/edit?id=<%= user._id%>">Edit your profile</a>
                             <div id="logout">
                                 <a href="/logout">
-                                    <span class="material-symbols-outlined">logout</span>
+                                    <span class="material-symbols-outlined"></span>
                                     <span>logout</span>
                                 </a>
                             </div>
@@ -72,7 +73,6 @@
         Hii..  <%= user.name %>
         </h2>
     </span>
-     
     <center>
         <div id="profile">
             <form action="/complain-submit" method="POST" enctype="multipart/form-data">

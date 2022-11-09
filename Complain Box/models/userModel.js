@@ -34,6 +34,20 @@ const userSchema = new mongoose.Schema({
     token:{
         type:String,
         default:''
+    },
+    complain:{
+        type:String,
+        default:''
+    },
+    customcomplain:{
+        type:String,
+        default:''
+        // required:true
+    },
+    pdf:{
+        type:String,
+        default:''
+        // required:true
     }
 
 });
@@ -41,6 +55,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User",userSchema);
 
 //module.exports = mongoose.model("User",userSchema);
+
 
 const complainSchema = new mongoose.Schema({
     email:{
@@ -59,10 +74,8 @@ const complainSchema = new mongoose.Schema({
         type:String,
         // required:true
     }
-});
+}); 
 const Complain = mongoose.model("Complain",complainSchema);
-
-//module.exports = mongoose.model("Complain",complainSchema);
 
 module.exports = {
     User:  User,
