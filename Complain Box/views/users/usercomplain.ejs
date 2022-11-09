@@ -23,17 +23,55 @@
             </a>
         </div>
     </nav>
-    <div id="login">
+    <!-- <div id="login">
         <div id="complaint_box">
             <h1 id="complain"><u>
                     <center><b>Your Complain</b></center>
                 </u></h1>
-                <p style="color: white; padding-left: 40px; padding-top: 40px;">
-                      <%= complain.complain %>
-                      <%= complain.customcomplain %>
+                <p style="color: white; padding-left: 40px; padding-top: 40px;">    
                 </p>
             <br><br>
-        </div>
+        </div> -->
+      
+        <center>
+            <div id="profile">
+                <form action="/complain-submit" method="POST" enctype="multipart/form-data">
+                    <div id="complaint_box">
+                        <h1 id="complain"><u>
+                            <center><b>Your Complain</b></center>
+                        </u></h1>
+                        <br>
+                        <div id="complain-form">
+                            <select name="customcomplain" class="form-select" aria-label="Disabled select example">
+                                <option selected><%= complain.customcomplain %></option>
+                                <option value="Electricity Problem">Electricity Problem</option>
+                                <option value="Water Problem">Water Problem</option>
+                                <option value="Subsidy Problem">Subsidy Problem</option>
+                                <option value="LPG gas related Problem">LPG gas related Problem</option>
+                            </select>
+                            <br>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label"><u>Write other Complain
+                                        here</u></label>
+                                <textarea name="complain" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="write here..."><%= complain.complain %></textarea>
+                            </div>
+                            <label style="font: size 1.2em; font-weight:700 "  for="text"><u>Your uploaded pdf</u></label>
+
+                                <iframe src="userpdfcomplain/<%= complain.pdf %>" frameborder="2px"></iframe>
+                            
+                                <input style="height: 60px; width: 300px" type="file" name="pdf" value="<%= complain.pdf %>">
+                            
+                            <br>
+                            <center><input style="height: 40px;background-color:blue; color:white;" type="submit"
+                                    value="Edit"></center>
+                            <center><a href="/home">Back</a></center> 
+                        </div>
+                        <br>
+                    </div>
+                </form>
+        </center>
+
 
     </div>
 
