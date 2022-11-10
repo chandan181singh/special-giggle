@@ -256,8 +256,9 @@ const insertComplain = async (req, res) => {
 
 const loadComplain = async (req, res) => {
     try {
-        const userData = await Complain.findById({ _id: req.session.complain_id });
-        //const userData2 = await Complain.findOne({email:emaail});
+        //const userData = await Complain.findById({ _id: req.session.complain_id });
+        const userData = await Complain.findOne({email:emaail});
+        
         res.render('usercomplain', { complain: userData });
     } catch (error) {
         console.log(error.message);
