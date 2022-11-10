@@ -129,7 +129,7 @@ const loginLoad = async (req, res) => {
     try {
         res.render('login');
     } catch (error) {
-        console.log(eroor);
+        console.log(error);
     }
 }
 
@@ -145,7 +145,7 @@ const verifyLogin = async (req, res) => {
                 if (userData.is_verified === 0) {
                     res.render('login', { message: "Please verify your mail." });
                 } else {
-                    req.session.user_id = userData._id;
+                    req.session.user_id = userData.id;
                     res.redirect('/home');
                 }
             } else {
@@ -296,6 +296,37 @@ const updateProfile = async (req, res) => {
         console(error.message);
     }
 };
+
+//edit complains
+
+const editLoad2 = async (req, res) => {
+    try {
+
+        const id = req.query.id;
+        const userData = await Complain.findById({ _id: id });
+        if (userData) {
+            res.render('editcomplain', { complain: userData });
+        } else {
+            res.redirect('/complain');
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const updateComplain = async (req, res) => {
+    try {
+
+        if (req.file) {
+            const userData = await Complain.findByIdAndUpdate({ _id: req.body.complain_id }, { $set: { complain: req.body.complain, customcomplain: req.body.customcomplain, pdf:req.file.filename } });
+        } else {
+           const userData = await Complain.findByIdAndUpdate({ _id: req.body.complain_id }, { $set: { complain: req.body.complain, customcomplain: req.body.customcomplain } });
+        }
+        res.redirect('/complain');
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 module.exports = {
     loadRegister,
     insertUser,
@@ -311,5 +342,7 @@ module.exports = {
     insertComplain,
     loadComplain,
     editLoad,
-    updateProfile
+    updateProfile,
+    editLoad2,
+    updateComplain
 }

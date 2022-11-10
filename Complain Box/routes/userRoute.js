@@ -1,11 +1,15 @@
 
 const express = require("express");
-const userRoute = express();
 const session = require("express-session");
-
 const config = require("../config/config");
+const userRoute = express();
 
-userRoute.use(session({secret:config.sessionSecrete}));
+userRoute.use(session({
+secret:config.sessionSecrete,
+resave:false,
+saveUninitialized:false
+
+}));
 
 const auth = require("../middleware/auth");
 
@@ -75,5 +79,9 @@ userRoute.get('/complain',auth.isLogin,userController.loadComplain);
 userRoute.get('/edit',auth.isLogin,userController.editLoad);
 
 userRoute.post('/edit',upload.single('image'),userController.updateProfile);
+
+userRoute.get('/editcomplain',auth.isLogin,userController.editLoad2);
+
+userRoute.post('/editcomplain',upload2.single('pdf'),userController.updateComplain);
 
 module.exports = userRoute;

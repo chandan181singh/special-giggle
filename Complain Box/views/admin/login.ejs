@@ -29,6 +29,15 @@
                     <center><b>COMPLAINT BOX</b></center>
                 </u></h1>
             <br><br>
+            <% if(typeof message !=='undefined' ){ %>
+                <center>
+                  <div style="width: 350px; border-radius: 20px;">
+                  <h4 style="color: white; background-color: rgb(216, 216, 4); font-weight: 700;">
+                     <%= message %> !!!
+                     <br>
+                 </h4></div>
+                </center>
+                <% } %>
             <h2>
                 <center>
                     <center>
@@ -37,23 +46,23 @@
                         <a href="/" class="btn btn-outline-primary" for="btnradio1">login as User</a>
                 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
-                        <a href="/adminlogin"  class="btn btn-outline-primary" for="btnradio3">login as Admin</a>
+                        <a href="/admin"  class="btn btn-outline-primary" for="btnradio3">login as Admin</a>
                       </div>
                     </center>
                 </center>
             </h2>
             <br>
              <!-- make Post  request to login  -->
-           <form action="/adminlogin" method="POST">
+           <form action="/admin" method="POST">
                 <div id="form">
                     <label for="email">Email</label>
-                    <center> <input type="email" class="form-control" name="username" placeholder="username" size="20">
+                    <center> <input style="height: 30px;" type="email" class="form-control" name="email" placeholder="username" size="20">
                     </center>
                     <label for="password">Password</label>
-                    <center> <input type="password" class="form-control" name="password" placeholder="password"
+                    <center> <input style="height: 31px;" type="password" class="form-control" name="password" placeholder="password"
                             size="20">
                     </center>
-                    <center><button type="submit">Login</button></a></center>
+                    <center><input style="height: 40px;background-color:blue; color:white;" type="submit" value="Login"></center>
                 </div>
             </form>
             <br><br>

@@ -1,22 +1,35 @@
 const express = require("express");
+
+const config = require("../config/config");
 const adminRoute = express();
-const bodyParser = require('body-parser');
+const session = require("express-session");
+adminRoute.use(session({
+    
+    secret:config.sessionSecrete,
+    saveUninitialized:false,
+    resave:true
+}));
+
+const bodyParser = require("body-parser");
 adminRoute.use(bodyParser.json());
 adminRoute.use(bodyParser.urlencoded({extended:true}));
 
-adminRoute.set('views',"./views/admin");
 adminRoute.set('view engine','ejs');
+adminRoute.set('views',"./views/admin");
 
-//const adminController = require("../controller/adminController");
+const auth = require("../middleware/adminAuth");
 
-const adminLoginLoad = async(req,res)=>{
-    try{
-         res.render('adminlogin');
-    }catch(error){
-        console.log(error.message);
-    }
-}
+const adminController = require("../controller/adminController");
 
-adminRoute.get('/adminlogin',adminLoginLoad);
+adminRoute.get('/',adminController.loadLogin);
+
+adminRoute.post('/',adminController.verifyLogin);
+adminRoute.get('/home',adminController.loadDashboard);
+
+adminRoute.get('/logout',adminController.logout);
+
+adminRoute.get('*',(req,res)=>{
+    res.redirect('/admin');
+});
 
 module.exports = adminRoute;
