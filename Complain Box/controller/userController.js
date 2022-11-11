@@ -95,6 +95,7 @@ const insertUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             mbno: req.body.mbno,
+            profile: req.body.profile,
             image: req.file.filename,
             password: spassword,
             is_admin: 0
@@ -132,6 +133,7 @@ const loginLoad = async (req, res) => {
         console.log(error);
     }
 }
+var Email;
 
 const verifyLogin = async (req, res) => {
 
@@ -145,6 +147,7 @@ const verifyLogin = async (req, res) => {
                 if (userData.is_verified === 0) {
                     res.render('login', { message: "Please verify your mail." });
                 } else {
+                    Email = userData.email;
                     req.session.user_id = userData.id;
                     res.redirect('/home');
                 }
@@ -257,7 +260,7 @@ const insertComplain = async (req, res) => {
 const loadComplain = async (req, res) => {
     try {
         //const userData = await Complain.findById({ _id: req.session.complain_id });
-        const userData = await Complain.findOne({email:emaail});
+        const userData = await Complain.findOne({email:Email});
         
         res.render('usercomplain', { complain: userData });
     } catch (error) {

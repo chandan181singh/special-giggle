@@ -61,10 +61,10 @@
 
                     <iframe src="userpdfcomplain/<%= complain.pdf %>" frameborder="2px"></iframe>
                     <br>
-                    <a href="/editcomplain?id=<%= complain._id%>">
-                        <center><button style="height: 40px;background-color:blue; color:white;" value="Edit">Edit</button></center>
-                    </a>
-                    <center><a href="/home">Back</a></center>
+                    <div class="d-grid gap-2 col-6 .mx-auto">
+                        <a class="btn btn-warning" href="/editcomplain?id=<%= complain._id%>" role="button">Edit</a>
+                        <a class="btn btn-primary" href="/home" role="button">Back</a>
+                      </div>
                 </div>
                 <br>
             </div>

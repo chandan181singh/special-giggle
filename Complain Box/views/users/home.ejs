@@ -40,26 +40,25 @@
                                     Services
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">FAQs</a></li>
+                                    <li><a class="dropdown-item" href="#">Chat on Whatapp</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Call Us</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact Us</a>
+                                <a class="nav-link" href="#contact">Contact Us</a>
                             </li>
                         </ul>
                         <form class="d-flex" role="link">
-                            <a href="/edit?id=<%= user._id%>">Edit your profile</a>
-                            <div id="logout">
-                                <a href="/logout">
-                                    <span class="material-symbols-outlined"></span>
-                                    <span>logout</span>
-                                </a>
+                             <div style="margin-right: 8px;">    
+                                <a class="btn btn-warning" href="/edit?id=<%= user._id%>" role="button">Edit Your Profile </a>
                             </div>
+                                <div>
+                                <a class="btn btn-outline-danger" href="/logout" role="button">Logout</a>
+                             </div>
                         </form>
                     </div>
                 </div>
@@ -103,11 +102,26 @@
                         <br>
                         <center><input style="height: 40px;background-color:blue; color:white;" type="submit"
                                 value="Submit"></center>
-                        <center><a href="/complain">view your complain</a></center> 
+                       
+                        <div class="d-grid gap-2 col-6 .mx-auto">
+                            <a class="btn btn-success" href="/complain" role="button">View Your Complain</a>
+                          </div>
                     </div>
                     <br>
                 </div>
             </form>
+             <br><br>
+             <center>
+            <div id="contact">
+                <ul style="display:flex; justify-content: center;">
+                    <li class="logo"><a href="tel: +916204355528" target="_blank"><img src="/public/call.png" alt="call"></a></li>
+                    <li class="logo"><a href="https://www.facebook.com/profile.php?id=100077963890907"><img src="/public/facebook.png" alt=""></a></li>
+                    <li class="logo"><a href="https://wa.me/916204355528" target="_blank"><img src="/public/whatapps.jpeg" alt=""></a></li>
+                    <li class="logo"><a href="mailto: chandan.20214073@gmail.com" target="_blank"><img src="/public/gmail.png" alt=""></a></li>
+                    <li class="logo"><a href="https://www.instagram.com/invites/contact/?i=1nu76logi4shi&utm_content=nv6pozc"><img src="/public/instagram.jpg" alt=""></a></li>
+                </ul>
+            </div>
+        </center>
     </center>
     <br><br>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

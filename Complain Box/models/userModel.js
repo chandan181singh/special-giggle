@@ -35,21 +35,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:''
     },
-    complain:{
+    profile:{
         type:String,
-        default:''
-    },
-    customcomplain:{
-        type:String,
-        default:''
-        // required:true
-    },
-    pdf:{
-        type:String,
-        default:''
-        // required:true
+        require:true
     }
-
 });
 
 const User = mongoose.model("User",userSchema);

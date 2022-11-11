@@ -117,3 +117,13 @@ img{
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.logo img{
+    height: 50px;
+    width: 50px;
+}
+.logo a{
+    padding-left: 10px;
+    text-decoration: none;
+}
+
