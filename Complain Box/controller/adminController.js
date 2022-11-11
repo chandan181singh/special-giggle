@@ -14,24 +14,20 @@ const verifyLogin = async(req,res)=>{
         const email = req.body.email;
         const password = req.body.password;
         const userData = await User.findOne({email:email});
-       // console.log(userData.name);
         if(userData){
-            console.log("hello");
             const passwordMatch = await bcrypt.compare(password,userData.password);
             if(passwordMatch){
-                console.log("hello1");
                 if(userData.is_admin === 0){
-                    res.render('login',{message:"Email or password is incorrect 1"});
+                    res.render('login',{message:"Email or password is incorrect"});
                 }else{
-                    console.log("hello2");
                     req.session.user_id = userData.id;
                     res.redirect("/admin/home");
                 }
             }else{
-                res.render('login',{message:"Email or password is incorrect 2"});``
+                res.render('login',{message:"Email or password is incorrect"});``
             }
         }else{
-            res.render('login',{message:"Email or password is incorrect 3"});``
+            res.render('login',{message:"Email or password is incorrect"});``
         }
     }catch(error){
         console.log(error.message);
