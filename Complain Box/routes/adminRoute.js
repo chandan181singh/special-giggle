@@ -26,7 +26,9 @@ adminRoute.get('/',auth.isLogout,adminController.loadLogin);
 adminRoute.post('/',adminController.verifyLogin);
 adminRoute.get('/home',auth.isLogin,adminController.loadDashboard);
 
-adminRoute.get('/logout',auth.isLogout,adminController.logout);
+adminRoute.get('/logout',auth.isLogin,adminController.logout);
+
+adminRoute.get('/dashboard',auth.isLogin,adminController.adminDashboard);
 
 adminRoute.get('*',(req,res)=>{
     res.redirect('/admin');

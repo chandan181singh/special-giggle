@@ -246,7 +246,8 @@ const insertComplain = async (req, res) => {
             email: userData.email,
             complain: req.body.complain,
             customcomplain: req.body.customcomplain,
-            pdf: req.file.filename
+            pdf: req.file.filename,
+            is_admin: 0
         });
 
         const userComplain = await complain.save();

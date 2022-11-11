@@ -50,9 +50,19 @@ const logout = async(req,res)=>{
         console.log(error.message);
     }
 }
+
+const adminDashboard = async(req,res)=>{
+    try{
+        const complainData = await Complain.find({is_admin:0});
+          res.render('dashboard',{admin:complainData});
+    }catch(error){
+       console.log(error.message);
+    }
+}
 module.exports = {
     loadLogin,
     verifyLogin,
     loadDashboard,
-    logout
+    logout,
+    adminDashboard
 }

@@ -62,7 +62,11 @@ const complainSchema = new mongoose.Schema({
     pdf:{
         type:String,
         // required:true
-    }
+    },
+    is_admin:{
+        type:Number,
+        require:true
+    }    
 }); 
 const Complain = mongoose.model("Complain",complainSchema);
 
