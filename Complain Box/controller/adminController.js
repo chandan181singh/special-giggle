@@ -53,8 +53,9 @@ const logout = async(req,res)=>{
 
 const adminDashboard = async(req,res)=>{
     try{
-        const complainData = await Complain.find({is_admin:0});
-          res.render('dashboard',{admin:complainData});
+          const complainData = await Complain.find({is_admin:0});
+          console.log(complainData);
+          res.render('dashboard',{users:complainData});
     }catch(error){
        console.log(error.message);
     }

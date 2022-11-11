@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,36 +20,33 @@
           </a>
         </div>
       </nav>
-      <center><h1 style="color: white;">Dashboard</h1> </center> 
-      <div>
-           <table width="50%">
-            <tr>Email</tr>
-           <tr>Complain</tr>
-           <tr>CustomComplains</tr>
-           <tr>ComplainPdf</tr>
-        </table>
-        <%
-        if(admin.length > 0){
-            for(let i=0; i<admin.length; i++){
-                %>
-                <td><%=admin[i].email  %></td>
-                <td><%=admin[i].complain  %></td>
-                <td><%=admin[i].customcomplain  %></td>
-                <td><iframe src="userpdfcomplain/<%= admin[i].pdf %>" frameborder="2px"></iframe></td>
-                <%
-            }
-            <!-- else{
-                %>
-                     <tr colspan="5">User Not Found</tr>
-                <%
-            } -->
-        }
-        %>
-      </div>
-     
-        <center><a href="/admin/home">Back</a></center>
+     <center><h1 style="color: white;">Dashboard</h1></center>
+    <table width="50%" style="color: white; display:grid; padding: 20px 0;" >
+      <tr>
+        <th>Email</th>
+        <th>Custom Complain &nbsp</th>
+        <th>Complain &nbsp</th>
+        <th>complainPdf &nbsp</th>
+      </tr>
    
 
+    <% 
+    if(users.length > 0){
+      for(let i = 0; i<users.length; i++){
+        %>
+        <tr>
+          <td><%= users[i].email %>&nbsp</td>
+          <td><%= users[i].customcomplain %>&nbsp</td>
+          <td><%= users[i].complain %>&nbsp</td>
+          <td> <iframe src="/public/userpdfcomplain/<%= users[i].pdf %>" frameborder="2px"></iframe></td>
+        </tr>
+        <br>
+        <%
+      }
+    }
+    
+    %>
+  </table>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
@@ -61,5 +56,4 @@
 </body>
 
 </html> 
-
 

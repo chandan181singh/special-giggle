@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const express = require('express');
-mongoose.connect("mongodb://localhost:27017/UserDb11", {
+mongoose.connect("mongodb://localhost:27017/UserDb12", {
     useNewUrlParser: "true"
 });
 
