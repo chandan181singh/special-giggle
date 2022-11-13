@@ -7,7 +7,6 @@ mongoose.connect("mongodb://localhost:27017/UserDb12", {
 const app = express();
 app.use(express.static(__dirname));
 
-
 const userRoute = require('./routes/userRoute');
 app.use('/',userRoute);
 
