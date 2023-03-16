@@ -51,7 +51,7 @@
 ## Contributors.. ##
 
 * [Chandan Kumar](https://github.com/chandan181singh)
-* [Shivam Kumar](https://github.com/chandan181singh)
-* [Shashwat Kapoor](https://github.com/chandan181singh)
+* [Shivam Kumar](https://github.com/karna3813)
+* [Shashwat Kapoor](https://github.com/)
 
  ![GitHub manifest version](https://img.shields.io/github/manifest-json/v/chandan181singh/_complain_box_)
