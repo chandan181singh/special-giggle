@@ -56,7 +56,7 @@ userRoute.post('/register',upload.single('image'),userController.insertUser);
 
 userRoute.get('/verify',userController.verifyMail);
 
-userRoute.get('/',auth.isLogout,userController.loginLoad);
+userRoute.get('/',auth.isLogout,userController.tempLoad);
 userRoute.get('/login',auth.isLogout,userController.loginLoad);
 userRoute.post('/login', userController.verifyLogin);
 
@@ -83,5 +83,15 @@ userRoute.post('/edit',upload.single('image'),userController.updateProfile);
 userRoute.get('/editcomplain',auth.isLogin,userController.editLoad2);
 
 userRoute.post('/editcomplain',upload2.single('pdf'),userController.updateComplain);
+
+userRoute.get('/delete',auth.isLogin,userController.deleteComplain);
+
+userRoute.get('/status',auth.isLogin,userController.loadUserStaus);
+
+userRoute.get('/rate',auth.isLogin,userController.loadRate);
+
+userRoute.post('/rate',auth.isLogin,userController.insertRating);
+
+userRoute.get('/dashBoard',auth.isLogin,userController.loadDashboard);
 
 module.exports = userRoute;

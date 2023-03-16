@@ -8,10 +8,11 @@ const loadLogin = async(req,res)=>{
     }
 }
 
+var email;
 const verifyLogin = async(req,res)=>{
     try{
 
-        const email = req.body.email;
+        email = req.body.email;
         const password = req.body.password;
         const userData = await User.findOne({email:email});
         if(userData){
@@ -36,7 +37,9 @@ const verifyLogin = async(req,res)=>{
 
 const loadDashboard = async(req,res)=>{
     try{
-       res.render('home');
+       const complainData = await Complain.find({is_admin:0});
+       const userData = await User.findOne({email:email});
+       res.render('home',{users:complainData, user:userData});
     }catch(error){
         console.log(error.message);
     }
@@ -60,10 +63,45 @@ const adminDashboard = async(req,res)=>{
        console.log(error.message);
     }
 }
+
+const reviewLoad = async(req,res)=>{
+    try{
+        const upadateReview = await Complain.updateOne({ _id: req.query.id }, { $set: { review: 1 } });
+        const complainData = await Complain.findOne({ _id: req.query.id });
+        console.log(complainData.customcomplain);
+        const userData = await User.findOne({email:email});
+          console.log(complainData);
+          res.render('review',{complain:complainData, user:userData});
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+const editStatus = async(req,res)=>{
+      try{
+        const upadateReview = await Complain.updateOne({ _id: req.query.id }, { $set: { status: 1 } });
+        res.redirect('/admin/home');
+      }catch(error){
+        console.log(error);
+      }
+}
+
+const insertSol = async(req,res)=>{
+    try{
+        const sol = await Complain.updateOne({ _id: req.body.complain_id }, { $set: {solution: req.body.sol } });
+        console.log(req.body.sol);
+        res.redirect('/admin/home');
+    }catch(error){
+        console.log(error);
+    }
+}
 module.exports = {
     loadLogin,
     verifyLogin,
     loadDashboard,
     logout,
-    adminDashboard
+    adminDashboard,
+    reviewLoad,
+    editStatus, 
+    insertSol
 }

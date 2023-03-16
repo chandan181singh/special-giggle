@@ -4,7 +4,7 @@
 }
 
 body{
-    background: linear-gradient(to right,rgb(49, 48, 49), rgb(31, 26, 50));
+    background: linear-gradient(to right,rgb(0, 0, 0), rgb(0, 0, 0));
 }
 #navebar{
     position: relative;
@@ -31,16 +31,6 @@ body{
 #logout a{
     text-decoration: none;
 }
-/* #profile{
-    display: flex;
-    margin-left: 15%;
-    margin-right: 15%;
-} */
-
-/* .card{
-   margin-left: 10px;
-   margin-right: 10px;
-} */
 
 #complain{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -48,7 +38,7 @@ body{
 }
 
 #complaint_box{
-    background: linear-gradient(to right, red,blue);
+    background: linear-gradient(#fe7bca,rgb(250, 41, 167));
     width: 450px;
     /* margin-left: 35%; */
     margin: auto;

@@ -8,6 +8,8 @@ const config = require("../config/config");
 
 const randomstring = require("randomstring");
 
+const alert = require("alert");
+
 const securePassword = async (password) => {
     try {
         const passwordHash = await bcrypt.hash(password, 10);
@@ -43,6 +45,15 @@ const sendVerifyMail = async (name, email, user_id) => {
                 console.log("Email has been sent:- ", info.response);
             }
         })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+//Loading page
+const tempLoad = async (req, res) => {
+    try {
+        res.render('temp');
     } catch (error) {
         console.log(error.message);
     }
@@ -164,8 +175,9 @@ const verifyLogin = async (req, res) => {
 
 const loadHome = async (req, res) => {
     try {
-        const userData = await User.findById({ _id: req.session.user_id })
-        res.render('home', { user: userData });
+        const userData = await User.findById({ _id: req.session.user_id });
+        const complainData = await Complain.find({email:userData.email});
+        res.render('home', { user: userData, complain: complainData });
     } catch (error) {
         console.log(error.messgae);
     }
@@ -241,13 +253,24 @@ const resetPassword = async (req, res) => {
 const insertComplain = async (req, res) => {
     try {
         const userData = await User.findById({ _id: req.session.user_id });
-
+        const t = new Date();
+        let d = t.getDate(), m = t.getMonth()+1, y = t.getFullYear(), hr = t.getHours(), min = t.getMinutes(), sec = t.getMinutes();
+        if(d<10) d = "0"+ d;
+        if(m<10) m = "0" + m;
+        if(hr<10) h = "0"+hr;
+        if(min < 10) min = "0"+min;
+        if(sec <  10) sec = "0"+sec;
+        const date = d + "/" + m + "/" + y;
+        const time = hr+":"+min+":"+sec;
+        const todayDate = date + ", " + time;
         const complain = Complain({
+            name: userData.name,
             email: userData.email,
             complain: req.body.complain,
             customcomplain: req.body.customcomplain,
             pdf: req.file.filename,
-            is_admin: 0
+            is_admin: 0,
+            date: todayDate,
         });
 
         const userComplain = await complain.save();
@@ -261,9 +284,10 @@ const insertComplain = async (req, res) => {
 const loadComplain = async (req, res) => {
     try {
         //const userData = await Complain.findById({ _id: req.session.complain_id });
-        const userData = await Complain.findOne({email:Email});
+        const userData = await User.findById({ _id: req.session.user_id });
+        const complainData = await Complain.find({email:Email});
         
-        res.render('usercomplain', { complain: userData });
+        res.render('usercomplain', { complain: complainData, user: userData});
     } catch (error) {
         console.log(error.message);
     }
@@ -274,7 +298,6 @@ const loadComplain = async (req, res) => {
 
 const editLoad = async (req, res) => {
     try {
-
         const id = req.query.id;
         const userData = await User.findById({ _id: id });
         if (userData) {
@@ -306,11 +329,10 @@ const updateProfile = async (req, res) => {
 
 const editLoad2 = async (req, res) => {
     try {
-
         const id = req.query.id;
-        const userData = await Complain.findById({ _id: id });
-        if (userData) {
-            res.render('editcomplain', { complain: userData });
+        const complainData = await Complain.findById({ _id: id });
+        if (complainData) {
+            res.render('editcomplain', {complain: complainData });
         } else {
             res.redirect('/complain');
         }
@@ -332,6 +354,57 @@ const updateComplain = async (req, res) => {
         console.log(error.message);
     }
 };
+
+const deleteComplain = async (req,res) => {
+    try {
+        const data = await Complain.findByIdAndRemove({_id:req.query.id});
+        console.log(data);
+        res.redirect('/complain');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const loadUserStaus = async (req, res) => {
+    try {
+        const userData = await User.findById({ _id: req.session.user_id });
+        const complainData = await Complain.find({email:userData.email});
+        res.render('complainStaus', { user: userData, complain: complainData });
+    } catch (error) {
+        console.log(error.messgae);
+    }
+}
+
+const loadRate = async (req,res) =>{
+    try{
+        const id = req.query.id;
+        const userData = await User.findById({ _id: id });
+        res.render('rate',{ user: userData });
+    } catch(error){
+        console.log(error.message);
+    }
+}
+
+const insertRating = async (req, res) =>{
+    try{
+        const userData = await User.findByIdAndUpdate({_id: req.body.user_id }, { $set: { rating: req.body.rating} });
+        alert("Rating have been done successfully");
+        res.redirect('/home');
+    }catch(error){
+        console.log(error.message);
+    }
+}
+
+const loadDashboard = async (req,res) =>{
+    try{
+        const userData = await User.findById({ _id: req.session.user_id });
+        const complainData = await Complain.find({email:userData.email});
+        res.render('dashBoard', { user: userData, complain: complainData });
+    }catch(error){
+        console.log(error);
+    }
+} 
+
 module.exports = {
     loadRegister,
     insertUser,
@@ -349,5 +422,11 @@ module.exports = {
     editLoad,
     updateProfile,
     editLoad2,
-    updateComplain
+    updateComplain,
+    tempLoad,
+    deleteComplain,
+    loadUserStaus,
+    loadRate,
+    insertRating,
+    loadDashboard
 }

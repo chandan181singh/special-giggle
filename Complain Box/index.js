@@ -10,7 +10,6 @@ app.use(express.static(__dirname));
 const userRoute = require('./routes/userRoute');
 app.use('/',userRoute);
 
-
 const adminRoute = require('./routes/adminRoute');
 app.use('/admin',adminRoute);
 

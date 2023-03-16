@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     profile:{
         type:String,
         require:true
+    },
+    rating:{
+        type:Number,
+        default:0
     }
 });
 
@@ -47,6 +51,10 @@ const User = mongoose.model("User",userSchema);
 
 
 const complainSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
         required:true
@@ -66,7 +74,24 @@ const complainSchema = new mongoose.Schema({
     is_admin:{
         type:Number,
         require:true
-    }    
+    },
+    date:{
+        type:String,
+        required:true
+    },
+    review:{
+        type:Number,
+        default:0
+    },
+    status:{
+        type:Number,
+        default:0
+    },
+    solution:{
+        type:String,
+        default:""
+    }
+        
 }); 
 const Complain = mongoose.model("Complain",complainSchema);
 

@@ -1,29 +1,5 @@
-<!-- <% include('../layouts/header.ejs')  %>
-
-<h1> Login </h1>
-
-<% 
-    if(typeof message !== 'undefined'){
-        %> 
-        <h4><%= message %></h4>
-        <%
-    }
-%>
-
-<form action="/login" method="post">
-  <input type="email" name="email" required placeholder="Enter email">
-  <br><br>
-  <input type="password" name="password" required  placeholder="password">
-  <br><br>
-  <input type="submit" value="login">
-  <a href="/forget">Forget Password</a>
-  <br><br>
-</form>
-<% include('../layouts/footer.ejs')  %> -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,7 +58,6 @@
               <label for="password">Password</label>
               <center> <input style="height: 31px;" type="password" name="password" required  placeholder="password">
               </center>
-              <!-- <center><button type="submit" value="login">Login</button></a></center> -->
               <center><input style="height: 40px;background-color:blue; color:white;" type="submit" value="login"></center>
               <center><a href="/forget">Forget Password?</a></center>
               <br>
@@ -93,7 +68,6 @@
           <br><br>
     </div>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>
@@ -101,5 +75,4 @@
     integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
     crossorigin="anonymous"></script>
 </body>
-
 </html>

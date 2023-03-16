@@ -34,7 +34,7 @@ const sendVerifyMail = async(name,email,user_id)=>{
         }
     });
     const mailOptions = {
-        from:'chandan181singh@gmail.com',
+        from:'config.emailUser',
         to:email,
         subject:'For Verification at ComplainWebsite',
         html:'<p>Hii '+name+', Please Click here to <a href="http://localhost:3000/verify?id='+user_id+'">Verify</a> your mail</p>'
@@ -248,6 +248,7 @@ const insertComplain = async(req,res)=>{
         const userData = await User.findById({_id:req.session.user_id});
 
         const complain = Complain({
+         name:userData.name,
          email:userData.email,
          complain:req.body.complain,
          customcomplain:req.body.customcomplain,

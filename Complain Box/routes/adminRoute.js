@@ -30,6 +30,12 @@ adminRoute.get('/logout',auth.isLogin,adminController.logout);
 
 adminRoute.get('/dashboard',auth.isLogin,adminController.adminDashboard);
 
+adminRoute.get('/review',auth.isLogin,adminController.reviewLoad);
+
+adminRoute.get('/status',auth.isLogin,adminController.editStatus);
+
+adminRoute.post('/review',auth.isLogin,adminController.insertSol);
+
 adminRoute.get('*',(req,res)=>{
     res.redirect('/admin');
 });
