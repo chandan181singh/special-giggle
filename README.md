@@ -2,6 +2,8 @@
 
 # Introduction...
 * Complaint Box for the common people's Basic neccessity
+Website for the common people, where they can post their daily life problems and can manage their complaint
+and check any previous complaint status.
 # 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
