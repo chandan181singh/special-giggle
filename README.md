@@ -1,9 +1,9 @@
 # _Complaint_box_ #
 
 # Introduction...
-* Complaint Box for the common people's Basic neccessity
-Website for the common people, where they can post their daily life problems and can manage their complaint
-and check any previous complaint status.
+* Complaint Box for the common people's Basic neccessity, where they can post their daily life problems and can manage their complaint
+  and check any previous complaint status.
+* Admin can review the under process complaint and post solution for the complaint and mark it as completed  
 # 
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
@@ -30,12 +30,23 @@ and check any previous complaint status.
   
 * User can  view and edit his Profile including email
 
-* User can view and edit his current or previous Complaints
+* User can view his all the previous complaints with date and time in the dashborad
+
+* User  update their complains and can delete the complaints
+
+* User can check the status of their Complaints, either it is underprocess, reviewed or completed
+
+*  User can see the solution of completed complaints posted by the admin for the particular complaints in their status bar after clicking the completed button.
+
+* User can rate our website 
 
 * Admin SignIn / edit profile
 
-* View user complaints and Delete Complaints 
+* Admin can watch all the complaints in his dashbar including total no. of complaints and pending no. complaints
 
+* Admin can manage the complaints 
+
+* Admin can post the solution for the particular complaints and mark is as completed
 
 #
 # _TECH_STACK_
