@@ -41,7 +41,7 @@ Live Link: https://helping-box.onrender.com/
 
 * User can rate our website 
 
-* Admin SignIn / edit profile
+* Admin SignIn/login/edit profile
 
 * Admin can watch all the complaints in his dashbar including total no. of complaints and pending no. complaints
 
