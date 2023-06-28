@@ -14,7 +14,7 @@ Live Link: https://helping-box.onrender.com/
 
 ***Basics features***
 
-* User SignIn/SignUp
+* User SignIn/login/logout
 
 * User Email Verification
 
