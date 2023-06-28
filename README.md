@@ -33,7 +33,7 @@ Live Link: https://helping-box.onrender.com/
 
 * User can view his all the previous complaints with date and time in the dashborad
 
-* User  update their complains and can delete the complaints
+* User  edit/delete the complaints
 
 * User can check the status of their Complaints, either it is underprocess, reviewed or completed
 
