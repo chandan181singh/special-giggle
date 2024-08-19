@@ -253,16 +253,16 @@ const resetPassword = async (req, res) => {
 const insertComplain = async (req, res) => {
     try {
         const userData = await User.findById({ _id: req.session.user_id });
-        const t = new Date();
-        let d = t.getDate(), m = t.getMonth()+1, y = t.getFullYear(), hr = t.getHours(), min = t.getMinutes(), sec = t.getMinutes();
-        if(d<10) d = "0"+ d;
-        if(m<10) m = "0" + m;
-        if(hr<10) h = "0"+hr;
-        if(min < 10) min = "0"+min;
-        if(sec <  10) sec = "0"+sec;
-        const date = d + "/" + m + "/" + y;
-        const time = hr+":"+min+":"+sec;
-        const todayDate = date + ", " + time;
+        const todayDate = new Date().toLocaleString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+        });
         const complain = Complain({
             name: userData.name,
             email: userData.email,
